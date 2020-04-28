@@ -2,9 +2,9 @@
 title: "KEmodel"
 author: "Alan Fortuny Sicart"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
   word_document: default
 ---
 
@@ -145,14 +145,21 @@ What can we do to avoid collapse?
 
 If we stablish a permanent amount of population, after a threshold, for example at xe, we should be able to avoid collapse. To to that we will set:
 
+When 
 
 $$ 
-{if} \ {y}<x*d \\
-\dot{x} = 1-{{y}/({x*d})} \\
- \\otherwise \\
- \dot{x} =0  \   
- \\
- [3]
+ y < x*d 
+$$
+Then:
+
+$$ 
+\dot{x} = 1-y/(x*d)  
+$$
+
+Otherwise
+
+$$ 
+ \dot{x} =0 
 $$
 
 Let's create another formula with fix population stock, when natural capital is enough:
