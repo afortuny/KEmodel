@@ -1,0 +1,246 @@
+---
+title: "KEmodel"
+author: "Alan Fortuny Sicart"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Predator Prey model
+
+To start and get familiar with the modeling approaches, the predator prey model is a simple yet valuable tool.
+
+Suppose we have two species, first the human as a predator, and nature as the prey. 
+
+The dynamics between those can be explain by the following equations:
+
+$$ 
+\dot{x} = (ay)x-bx  \   [1]
+$$
+$$ 
+\dot{y} = (cy)-(dx)y  \   [1]
+$$
+Note that the change in the amount of humans x, is a function of the amoun of natural stock,y, times some constant
+a which is the birth rate of x minus b which is the death rate.
+
+By the same tolken, nature regenerates at rate c, but is reduced at rate d, times the amount of humans x.
+
+Rather than having an stable equilibrium, there is a series of variations around the equilibrium values:
+
+$$
+x_{e} = c/b   \   [2]
+$$
+$$
+y_{e} = b/a \   [2]
+$$
+
+## Ploting the system behaviour
+
+In the following, we will see the behaviour of the system for the following values:
+
+
+```{r}
+
+a = 3*10^-5
+b = 2*10^−2
+c = 3*10^-2
+d = 2*10^-4
+xo=10^2
+yo=10^3
+T = 0:1000
+xe = c/b
+ye = b/a
+
+simulate <- function(d=2*10^-4,c=3*10^-2) {
+#Empty matrix with the evolution of the variables
+
+simulation = as.data.frame(matrix(ncol=5,nrow=length(T)))
+colnames(simulation) <- c("Time","humand_eq","nature_eq","human","nature")
+simulation$Time <- T
+simulation$humand_eq <- xe
+simulation$nature_eq <- ye
+
+# Running a loop for T
+
+for (t in T){
+  
+  if(t==0){
+    y=yo
+    x=xo
+    xdot = a*yo*xo-b*xo
+    ydot = c*yo-d*xo*yo
+  }else{
+    xdot = a*y*x-b*x
+    ydot = c*y-d*x*y
+    y = y+ydot
+    x = x+xdot
+    simulation[t,c("human")] <- y
+    simulation[t,c("nature")] <- x
+  }
+}
+return(simulation) 
+ 
+}
+
+simulation <-simulate()
+
+```
+
+
+We can now plot the resuts based on the simulation
+
+```{r}
+matplot(simulation[,4:5], type = c("b"),pch=1,xlab = c("year"), ylab = c("population/stock"),
+main ="Human and nature Scenario baseline") #plot
+legend("topright", legend = colnames(simulation)[4:5], col=2:1, pch=1)
+
+```
+
+
+This apparently simple model show interesting series of abundancy and almost collapse, and its figure, clearly depend upon:
+
+   1) The **relative size of the natural capital**, which is y/x
+   2) The **consumption need per humand**, defined by d
+   3) The **rate of regeneration of nature**, defined by c
+   
+
+Let's draw some scenarios:
+
+   A) The consumption per human is 10 times greater
+  
+
+```{r}
+
+simulation <-simulate(d=d*10)
+matplot(simulation[,4:5], type = c("b"),pch=1,xlab = c("year"), ylab = c("population/stock"),
+main ="Human and nature Scenario A high consumption") #plot
+legend("topright", legend = colnames(simulation)[4:5], col=2:1, pch=1)
+
+
+```
+
+   
+    B) The rate of regeneration of nature is 5 times faster than baseline
+
+```{r}
+
+simulation <-simulate(c=c*5)
+matplot(simulation[,4:5], type = c("b"),pch=1,xlab = c("year"), ylab = c("population/stock"),
+main ="Human and nature Scenario B fast recovery") #plot
+legend("topright", legend = colnames(simulation)[4:5], col=2:1, pch=1)
+
+
+```
+
+
+In the baseline scenario, a series of growth and collapse periods are happening, on average every 250 years. If consumption is accelerated, population is lower and breakdown is almost permanent, while when recovery is accelerated, given the fact that population grows at a proportion of the stock of nature, collapses still happen although less often thatn in the previous scenarios.
+
+What can we do to avoid collapse?
+
+If we stablish a permanent amount of population, after a threshold, for example at xe, we should be able to avoid collapse. To to that we will set:
+
+
+$$ 
+{if} \ {y}<x*d \\
+\dot{x} = 1-{{y}/({x*d})} \\
+ \\otherwise \\
+ \dot{x} =0  \   
+ \\
+ [3]
+$$
+
+Let's create another formula with fix population stock, when natural capital is enough:
+
+
+
+```{r}
+
+a = 3*10^-5
+b = 2*10^−2
+c = 1*10^-2
+d = 1*10^-4
+xo=10^2
+yo=10^3
+T = 0:1000
+
+simulate_fix_consumption <- function(d=2*10^-4,c=3*10^-2) {
+  #Empty matrix with the evolution of the variables
+  
+   simulation = as.data.frame(matrix(ncol=5,nrow=length(T)))
+  colnames(simulation) <- c("Time","humand_eq","nature_eq","human","nature")
+  simulation$Time <- T
+  simulation$humand_eq <- xe
+  simulation$nature_eq <- ye
+  
+  # Running a loop for T
+  
+  for (t in T){
+    
+    if(t==0){
+      y=yo
+      x=xo
+      
+    if(y<x*d*yo){
+      
+      xdot=-x*(y/(x*d*yo))
+      
+    }else{
+      if(x<xo){
+        xdot= min(a*x,xo-x)
+        
+      }else{
+        xdot =0
+      }
+     
+    }  
+     
+      ydot = c*yo-d*xo*yo
+    }else{
+      if(y<x*d*yo){
+        
+        xdot=-x*(y/(x*d*yo))
+        
+      }else{
+        
+        xdot =0
+      }  
+      ydot = c*y-d*x*yo
+      y = y+ydot
+      x = x+xdot
+      simulation[t,c("human")] <- x
+      simulation[t,c("nature")] <- y
+    }
+  }
+  return(simulation) 
+  }
+
+simulation <-simulate_fix_consumption (c = 1*10^-2,d = 1*10^-4)
+
+```
+
+
+
+
+```{r}
+matplot(simulation[,4:5], type = c("b"),pch=1,xlab = c("year"), ylab = c("population/stock"),
+main ="Human and nature Scenario fix population and consumption rate") #plot
+legend("topright", legend = colnames(simulation)[4:5], col=2:1, pch=1)
+
+```
+
+
+If we fix consumption to be d for all citizens, and maximum population to be 100, for a regenartion rate of 1% anually and consumption per capita of 0.01 units of the natural capital, is a steady state, where xe=xo, ye=yo for 1000 years, and consumption is smoothed for the whole period.Small deviations of such values can be catrastophic for the environment or the humanity in the long run.
+
+
+```{r}
+simulation <-simulate_fix_consumption (c = 1*10^-2,d = 8^-4)
+matplot(simulation[,4:5], type = c("b"),pch=1,xlab = c("year"), ylab = c("population/stock"),
+main ="Human and nature Scenario fix population but unestable consumption rate") #plot
+legend("topright", legend = colnames(simulation)[4:5], col=2:1, pch=1)
+
