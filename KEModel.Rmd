@@ -2,10 +2,10 @@
 title: "KEmodel"
 author: "Alan Fortuny Sicart"
 output:
+  word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
-  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -18,8 +18,11 @@ There are serious concerns regarding the likelihood of a global collapse that ha
 From one side, we are still relying heavily on fossil fuels to feed our economy and mantain our societal complexity,
 and its gettings harder and harder to keep up with the supply of oil, coal and gas. In order words, the time of abundant
 and cheap energy is likely to end.
+
 In parallel to this, humand caused global warming is going to make climate more extreme, increasing the amount of droughts and floods, and hence agriculture yields and basic infraestructure are under risk in many areas in the world.
+
 A growing population, that aims to replicate the consumption patters from western societies, will find that the ladder to great consumption does not correlate to societal cohesion or even hapinness, as we see already. Frustation is guaranted, as the Earth cannot support the level of population that are currently or in the future if dramatic reductions on consumption and energy use are taken, specially in those areas when a significant amount of material output is in place.
+
 The loss of biodiversity is not only a loss to our natural treasures and other species, but also a serious risk to our health, in the form of pandemics, polluted air or water, and a general loss of our resilience.
 The growing challenges and accumulated damage on the soil, water and other living organisms are not resulting is the elimination of poverty, the moderation of inequality and the reduction in the amount of stress and anxiety.
 
@@ -275,4 +278,24 @@ simulation <-simulate_fix_consumption (c = 1*10^-2,d = 8^-4)
 matplot(simulation[,4:5], type = c("b"),pch=1,xlab = c("year"), ylab = c("population/stock"),
 main ="Human and nature Scenario fix population but unestable consumption rate") #plot
 legend("topright", legend = colnames(simulation)[4:5], col=2:1, pch=1)
+```
+
+Is that model satysfying, well, it is certainly useful but also very limited.
+In the baseline scenario, while collapse is avoided there is a lot of societal pain, as population is forced to go down as available natural capital is not enough for everyone. Total collapse did not happen, but at the price of high population drifts,
+something no of us really want.
+
+In the scenario of fix population and consumption, we do achieve equilibrium, but is highly unstable, any slight deviation from the optimal level of consumption but break down the system and increase dramatically the amount of deaths.
+
+In any case, the inequality dimensions of the problem are not consider, as well as the possibility to save wealth when extraction is not longer possible (or a shock happens). That could first reduce total consumption, as the elites will see their consumption cap to a boundary, freeing resources for the poor, and also savings and accumulation can protect population for down times, hence natural cycles do not affect population numbers.
+
+The Handy Model will include the inequality into the equation and wealth accumulation, so we can understand how this interact with the environment. 
+
+
+## The Handy Model
+
+
+
+
+
+
 
