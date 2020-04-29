@@ -2,15 +2,40 @@
 title: "KEmodel"
 author: "Alan Fortuny Sicart"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
   word_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Introduction
+
+There are serious concerns regarding the likelihood of a global collapse that have multiple origins.
+
+From one side, we are still relying heavily on fossil fuels to feed our economy and mantain our societal complexity,
+and its gettings harder and harder to keep up with the supply of oil, coal and gas. In order words, the time of abundant
+and cheap energy is likely to end.
+In parallel to this, humand caused global warming is going to make climate more extreme, increasing the amount of droughts and floods, and hence agriculture yields and basic infraestructure are under risk in many areas in the world.
+A growing population, that aims to replicate the consumption patters from western societies, will find that the ladder to great consumption does not correlate to societal cohesion or even hapinness, as we see already. Frustation is guaranted, as the Earth cannot support the level of population that are currently or in the future if dramatic reductions on consumption and energy use are taken, specially in those areas when a significant amount of material output is in place.
+The loss of biodiversity is not only a loss to our natural treasures and other species, but also a serious risk to our health, in the form of pandemics, polluted air or water, and a general loss of our resilience.
+The growing challenges and accumulated damage on the soil, water and other living organisms are not resulting is the elimination of poverty, the moderation of inequality and the reduction in the amount of stress and anxiety.
+
+Growth as a policy to fix the previously mention issues is very flawed, as it is resource innefective, given the growing concentration of the benefits of that growth, and even the costs of that growth. And price systems cannot fix the scale problem we have at hand. There has to be limits in the amount of natural capital destruction, and the amount of inequality accepted if we aim to have a resilient society in terms of resource capacity but also in terms of social cohesion. Collapse could come in the form of wars due to the extreme stress of some parts of society, or in the form of lack of resource available to coppe with our growing and apparently insatiable needs.
+
+The Steady State Economics framework focus on the qualitative and not only quantitative aspect of development. Recognizing that not all growth is good, and that in a limited planet governened by the laws of thermodynamics, consumption and population must stagnated, and development have not only material dimensions but also qualitative ones as reflected in health, culture, social cohesion... While innovation is much needed to be more efficient and improve our lives, there must be a definition of enough, to avoid collapse and suffering it is important to shape our policy to limit costly growth, and give the chance to countries still in development face to take the path of enough, and not chasing the infinite race of more is better.
+
+A economy and society that is more reslient, just and even happier is possible, as no growth does not mean no development. An economy rich in time, health, socieal relationships, fredoom, justice and full of life and biodiversity is worth exploring alternative paradigms to growth, even if that requires more complex and out of the box tools.
+
+As economists we will asses the tradeoffs that exist between growth, consumption, inequality, natural capital...but taken a long term view, and not only maximizing a very short time window. Our intuition tell us that a better path for development is possible, where natural capital depletion is stopped, inequality is moderated, and moderate amounts of inequality are achieved. 
+
+The following models: The Predator Prey Model, The Handy Model and the Capital and Environment model, give us the intuitions of how
+certain actions on inequality, consumption, taxation and regulation of natural capital extraction, are not only necessary to avoid collapse but also Pareto efficient. 
+
+In the current paper, no empirical estimation will take place, only though games based on parameters given by the literature, but in the next research more empirical testing on the recommendations and results provided in that document will be under examination.
+
 
 ## Predator Prey model
 
