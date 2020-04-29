@@ -2,10 +2,10 @@
 title: "KEmodel"
 author: "Alan Fortuny Sicart"
 output:
-  word_document: default
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -40,7 +40,7 @@ certain actions on inequality, consumption, taxation and regulation of natural c
 In the current paper, no empirical estimation will take place, only though games based on parameters given by the literature, but in the next research more empirical testing on the recommendations and results provided in that document will be under examination.
 
 
-## Predator Prey model
+## Predator Prey model (Lotka 1925, Volterra 1926)
 
 To start and get familiar with the modeling approaches, the predator prey model is a simple yet valuable tool.
 
@@ -51,6 +51,7 @@ The dynamics between those can be explain by the following equations:
 $$ 
 \dot{x} = (ay)x-bx  \   [1]
 $$
+
 $$ 
 \dot{y} = (cy)-(dx)y  \   [1]
 $$
@@ -176,18 +177,18 @@ If we stablish a permanent amount of population, after a threshold, for example 
 When 
 
 $$ 
- y < x*d 
+ y < x*d \  [3]
 $$
 Then:
 
 $$ 
-\dot{x} = 1-y/(x*d)  
+\dot{x} = 1-y/(x*d)   \  [3]
 $$
 
 Otherwise
 
 $$ 
- \dot{x} =0 
+ \dot{x} =0 \  [3]
 $$
 
 Let's create another formula with fix population stock, when natural capital is enough:
@@ -291,7 +292,136 @@ In any case, the inequality dimensions of the problem are not consider, as well 
 The Handy Model will include the inequality into the equation and wealth accumulation, so we can understand how this interact with the environment. 
 
 
-## The Handy Model
+## The Handy Model (Motesharrei, Rivas, Kalnay 2014)
+
+The Handy Model, brings the possibility to accumulate wealth, that can be consumed later, called wealth.
+
+Another much needed feature in such modeling is the fact that wealth and consumption is not evenly distributed, and two types of population are created, the Elites with a much greater amount of wealth and consumption, and the Commoners, with much less.
+We see globally that a small percentage of the population concentrates most of the wealth and consumption of natural resources.
+
+The model hence becomes more complex than the Predator Pray model, as two equations are needed to model predator population, one for the elites and one for the commoners, one more equation for the natural capital and last for the wealth accumulation.
+
+
+$$ 
+\dot{x_C} = \beta_Cx_C-\alpha_Cx_C\   [4]
+$$
+
+$$ 
+\dot{x_E} = \beta_Ex_E-\alpha_Ex_E\   [5]
+$$
+
+
+$$ 
+\dot{y} = \gamma  y (\lambda-y)-\delta x_C  y  \   [6]
+$$
+
+$$ 
+\dot{w} = \delta x_C  y - C_C-C_E \   [7]
+$$
+
+
+**Model Description**
+
+The population is divided by xe[5] and xc[4], being the population of elites and commoners.Beta and alpha represent the birth and death rate.
+
+Beta can be assumed to be the same for both classes, but alpha depends on the available wealth.
+
+Note that although natural capital takes multiple forms : materials, water, soil, energy... we aggregate into one single number.
+
+
+The equation of nature [6] containts a regeneration term:
+
+
+$$ 
+ \gamma  y (\lambda-y)
+$$
+and a depletion term:
+
+$$ 
+\delta x_C  y  \   
+$$
+
+Note that maximum regeneration takes place when:
+
+$$ 
+\ {y} = \delta/2 \ 
+$$
+The depletion side contains the pollution involved in production.The depletion is proportional to the number of workers, without any reference to technological changes or the impact of physical capital. We will see in the next model what are the implications of not adding endogenous technology and capital into the depletion term.In this model, only commoners produce.
+
+The Handy model omits the impact on technological change as according to their authors "effects cancel out". The KE model presented later show the impact of having engoneous technological progress and it argues agains the destinty that improvements in efficiency will inevitably go to increases in consumption as the Handy model suggest. History is not destiny, and technology can play a significant role, even if it is far from what the infinit growth defenders try to make us believe.
+
+
+If we look at the wealth accumulation equation [7], wealth increases with production at rate 
+
+
+$$ 
+\delta x_C  y 
+$$
+
+and decreases with total consumption
+
+$$ 
+C_C+C_E \   
+$$
+
+The consumption of commoners is equal to:
+
+$$ 
+C_C= min(1,w/w_f)sx_c \ [8]   
+$$
+
+Where s is the subsistence salary, and wf is the minimum value of wealth that if below, famine start
+
+
+The consumption of elites is equal to:
+
+$$ 
+C_E= min(1,w/w_f)\kappa sx_C \ [9]   
+$$
+
+Where kappa is an exogenous value that defines the times the elites gt from the minimum salary s. As recognize by the authors this is a limitation of the model as it does not explain the sources of inequality and the chances to change over time. for the time being is a simple way to model the impact of some
+persistent inequality into our environment dynamics.
+
+The minimum wealth to avoid famine is expressed as:
+
+$$ 
+w_f = \rho x_C +\kappa \rho x_E   \   [10]   
+$$
+
+Note this is defined by rho, the minimum consumption for survival, where the elites got kappa times of it per person, in this model.
+
+The death rates are determined dynamically as follows:
+
+
+$$ 
+\alpha_C = \alpha_m + max(0,1-C_c/sx_C)(\alpha_M - \alpha_m)  \   [11]   
+$$
+
+$$ 
+\alpha_E = \alpha_m + max(0,1-C_E/sx_E)(\alpha_M - \alpha_m)  \   [12]   
+$$
+
+A healthy value of death rate (natural) has the subscript m, while M happens when a famine starts. Death rate can be also interpreted as a migration or the change due to increase social instability or worsen health.
+
+
+### A note on units ##
+
+It is important to understand that:
+
+   **population** is in number of people
+   **nature and wealth ** in dollars
+   **time** in years
+   
+We can argue that nature and wealth can be adjusted by prices, and the natural evaluation can be very complex, and its dependency and disccounting is subject to a great deal or intergenerational values.  
+
+
+
+
+
+   
+   
+
+
 
 
 
