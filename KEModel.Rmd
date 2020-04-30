@@ -415,14 +415,95 @@ It is important to understand that:
 We can argue that nature and wealth can be adjusted by prices, and the natural evaluation can be very complex, and its dependency and disccounting is subject to a great deal or intergenerational values.  
 
 
+### Equilibrium
+
+The Handy model can be used to find sustainable equilibriums and the maximum carrying capacity for a given society.
+In order for the population to reach an equilibrium, we must have:
 
 
-
+$$ 
+\alpha_m \le \beta_E \le \beta_C \le \alpha_M   \   [13]   
+$$
    
-   
+ We define a dimensionless parameter:
+ 
+ 
+$$ 
+\varphi =(\alpha_M- \beta_C)/ (\alpha_M - \alpha_m)     \   [14]   
+$$
+
+Since 
+
+$$ 
+\alpha_m  \le \beta_C \le \alpha_M   \     
+$$
+That means that:
+
+$$ 
+0 \le \varphi \le 1      \     
+$$
+
+### Equilibrium in a egalitarian society , xe=0
+
+We can find the equilibrium values where [4][6] and [7] are equal to zero, that gives us:
+
+$$
+x_{C,e}= (\gamma/\delta)*(\lambda-\varphi*(s/\delta))  \ [15]
+$$
+
+$$
+y_{e}= \varphi*(s/\delta))  \ [16]
+$$
+$$
+w_{e}= \varphi\rho*x_{Ce}  \ [17]
+$$
+
+People carrying capicity just equals Xce
+
+$$
+\chi  = x_{C,e}= (\gamma/\delta)*(\lambda-\varphi*(s/\delta))  \ [18]
+$$
+
+Carrying capcity can be maximized if nature regeneration rate is maximal, that happens when:
+
+
+$$
+y_{e}= \lambda /2  \
+$$
+
+This requires delta to be set at an optimal value equal to the maximum sustainable population, which can be derived from equations 15,16,17.
+
+$$
+\delta_{opt}= (2*\varphi*s)/\lambda  \
+$$
+
+The maximum carrying capcity is thus:
+
+$$
+\chi_M  = (\gamma/\delta_{opt})*(\lambda-\varphi*(s/\delta_{opt})) = (\gamma/(\varphi*s))*(\lambda/2)^2
+$$
+
+Following the same procedure, the equilibrium values of population, nature and wealth can be estimated, together with the maximum natural capacity for the following scenarios, proposed in Handy:
+
+  A) Egalitarian society, where Xe=0
+  B) Equitable societt, xe>0 but kappa=1
+  C) Unequal society, xe>0 and kappa>1
+  
+For all of these scenarios, the typical parameter values and initial conditions are given as following
+
+```{r,, echo=FALSE,message=FALSE,warning=FALSE}
+#install.packages("knitr")
+
+library(knitr)
+library(dplyr)
+library(kableExtra)
+param <-read.csv("data/Parameters_initial_values.csv")
 
 
 
+kable(param) %>%
+   kable_styling(bootstrap_options = "striped", full_width = F)
+```
 
 
 
