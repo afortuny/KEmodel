@@ -401,6 +401,7 @@ $$
 \alpha_E = \alpha_m + max(0,1-C_E/sx_E)(\alpha_M - \alpha_m)  \   [12]   
 $$
 
+
 A healthy value of death rate (natural) has the subscript m, while M happens when a famine starts. Death rate can be also interpreted as a migration or the change due to increase social instability or worsen health.
 
 
@@ -505,6 +506,8 @@ kable(param) %>%
    kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
+
+## Simulation results : Egalitarian Society (No-Elites): xE = 0 
 
 
 
